@@ -280,10 +280,10 @@ if __name__ == '__main__':
     parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--learning_rate", type=float, default=1e-4)
     parser.add_argument("--model", default='convnext_t', help="The backbone model name.")
-    parser.add_argument("--train_image_dir", default='', #The folder path which contains the training/validation images.
-        help="The train image dcm directory.")
-    parser.add_argument("--train_label_dir", default='', #The csv file path which contains the training/validation labels.
-        help="The train label dcm directory.")
+    parser.add_argument("--train_image_dir", default='',
+        help="The train/valid image dcm directory.")
+    parser.add_argument("--train_label_dir", default='',
+        help="The train/valid label csv directory.")
     # whether or not to save model
     parser.add_argument("-save", default=True, action="store_true")
     args = parser.parse_args()
