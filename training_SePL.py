@@ -58,7 +58,7 @@ def main(args):
         print(str)
 
     timestr = str(datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'))
-    experiment_dir = Path('/home/work/ko/bio/data/log')
+    experiment_dir = Path('') # Specify the directory where you want to save the logs and checkpoints
     experiment_dir.mkdir(exist_ok=True)
     experiment_dir = experiment_dir.joinpath(timestr)
     experiment_dir.mkdir(exist_ok=True)
@@ -98,7 +98,8 @@ def main(args):
     valid_loader = DataLoader(dataset=valid_set, batch_size=args.batch_size, shuffle=False, num_workers=4)
     
     # Save scalers for future use
-    with open(os.path.join("/home/work/ko/bio/data/log", timestr, "checkpoints", "scalers.pkl"), 'wb') as f:
+    # Specify the directory where you want to save the scalers
+    with open(os.path.join("", timestr, "checkpoints", "scalers.pkl"), 'wb') as f:
         pickle.dump(scalers, f)
 
     # Initialize the model
@@ -268,7 +269,8 @@ def main(args):
             if ((sum(t_losses)/len(t_losses)) < lowest_loss):
                 lowest_loss = sum(t_losses)/len(t_losses)
                 log_string('Epoch: %d, best model save, validation loss: %.5f' %(epoch+1, sum(t_losses)/len(t_losses)))
-                torch.save(model.module.state_dict(), os.path.join("/home/work/ko/bio/data/log", timestr, "checkpoints", "best_model.pth"))
+                # Specify the directory where you want to save the model
+                torch.save(model.module.state_dict(), os.path.join("", timestr, "checkpoints", "best_model.pth"))
             
             torch.cuda.empty_cache()
         
